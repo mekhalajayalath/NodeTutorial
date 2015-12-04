@@ -2,16 +2,27 @@
  * Created by mekhala on 12/3/15.
  */
 
-var mekhala = {
-    checkThis: function () {
-        console.log(this === mekhala)
+function user() {
+    this.name = "";
+    this.life = 100;
+    this.giveLife = function(targetedPlayer){
+        targetedPlayer.life += 1;
+        console.log(this.name + " gave a life to " + targetedPlayer.name);
+        console.log(targetedPlayer.name + " has " + targetedPlayer.life + " lives now. ")
     }
-};
-
-mekhala.checkThis(); // this refers to whtever calling the func
-
-function doSomething(){
-    console.log(this === global);
 }
 
-doSomething();
+var mekhala = new user();
+var samiyuru = new user();
+mekhala.name = "Mekh";
+samiyuru.name = "Sam";
+
+samiyuru.giveLife(mekhala);
+
+user.prototype.punch = function punch(targetedPlayer){
+    targetedPlayer.life -= 3;
+    console.log(this.name + " punched " + targetedPlayer.name);
+    console.log(targetedPlayer.name + " has " + targetedPlayer.life + " lives now. ")
+}
+
+mekhala.punch(samiyuru);
