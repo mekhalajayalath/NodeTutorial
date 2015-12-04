@@ -2,21 +2,16 @@
  * Created by mekhala on 12/3/15.
  */
 
-function placeOrder(orderNum) {
-    console.log("Recieved order" + orderNum);
+var mekhala = {
+    checkThis: function () {
+        console.log(this === mekhala)
+    }
+};
 
-    deliver(function () {
-        console.log("delivered order" + orderNum);
-    });
+mekhala.checkThis(); // this refers to whtever calling the func
+
+function doSomething(){
+    console.log(this === global);
 }
 
-function deliver(callback) {
-    setTimeout(callback, 5000);
-}
-
-placeOrder(1);
-placeOrder(2);
-placeOrder(3);
-placeOrder(4);
-placeOrder(5);
-
+doSomething();
