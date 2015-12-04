@@ -2,9 +2,21 @@
  * Created by mekhala on 12/3/15.
  */
 
-var person = {
-    firstName: "Mekhala",
-    lastNAme: "Senarathne"
+function placeOrder(orderNum) {
+    console.log("Recieved order" + orderNum);
+
+    deliver(function () {
+        console.log("delivered order" + orderNum);
+    });
 }
 
-console.log(person);
+function deliver(callback) {
+    setTimeout(callback, 5000);
+}
+
+placeOrder(1);
+placeOrder(2);
+placeOrder(3);
+placeOrder(4);
+placeOrder(5);
+
