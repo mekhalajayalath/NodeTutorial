@@ -3,12 +3,8 @@
  */
 
 
-function printAvatar(){
-    console.log("Avatar");
-}
-
-function printChappie(){
-    console.log("Chappie");
-}
-
-module.exports.avatar = printAvatar;
+module.exports = function () {
+    return {
+        favMovies: ""
+    }
+};
