@@ -1,21 +1,24 @@
+var connect = require("connect");
 var http = require("http");
-var fs = require("fs");
 
-function badRequest(response){
-    response.writeHead(404, {"content-type" : "text/plain"});
-    response.write("404 : Page Not Found");
-    response.end();
+var app = connect();
+
+function homePage(request, response, next){
+    console.log("This is the home page");
+    next();
 }
 
-function onRequest(request , response){
-    if(request.method == "GET" && request.url == "/"){
-        response.writeHead(200, {"content-type" : "text/html"});
-        fs.createReadStream("./index.html").pipe(response);
-    }
-    else{
-        badRequest(response);
-    }
+function aboutPage(request, response, next){
+    console.log("This is the about page");
+    next();
+
 }
 
-http.createServer(onRequest).listen("8888");
+//app.use("/home" , homePage);
+//app.use("/about", aboutPage);
+
+app.use(homePage);
+app.use(aboutPage);
+
+http.createServer(app).listen("8888");
 console.log("The server is created");
